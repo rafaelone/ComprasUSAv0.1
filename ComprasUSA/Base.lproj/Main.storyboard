@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fYA-s7-AWY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,13 +19,50 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="tNN-Ps-CHU">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="104" id="tNN-Ps-CHU" customClass="CompraTableViewCell" customModule="ComprasUSA" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="104"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tNN-Ps-CHU" id="QP9-07-cgO">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="103.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xkj-91-X4A">
+                                            <rect key="frame" x="12" y="6" width="63" height="80"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="80" id="6oM-0A-y4J"/>
+                                                <constraint firstAttribute="width" constant="63" id="uAK-nf-dCf"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome do produto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEn-k3-aZq">
+                                            <rect key="frame" x="89" y="6" width="276" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preço" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eiy-uu-QE9">
+                                            <rect key="frame" x="89" y="31.5" width="276" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Xkj-91-X4A" firstAttribute="top" secondItem="QP9-07-cgO" secondAttribute="top" constant="6" id="6Uz-cd-fV2"/>
+                                        <constraint firstItem="Eiy-uu-QE9" firstAttribute="leading" secondItem="Xkj-91-X4A" secondAttribute="trailing" constant="14" id="Cwy-Yp-9yx"/>
+                                        <constraint firstAttribute="bottom" secondItem="Xkj-91-X4A" secondAttribute="bottom" constant="17.5" id="W9L-gm-DJK"/>
+                                        <constraint firstItem="Eiy-uu-QE9" firstAttribute="top" secondItem="JEn-k3-aZq" secondAttribute="bottom" constant="5" id="oQ0-1D-Jdl"/>
+                                        <constraint firstItem="Xkj-91-X4A" firstAttribute="leading" secondItem="QP9-07-cgO" secondAttribute="leading" constant="12" id="sau-Cq-kIy"/>
+                                        <constraint firstItem="JEn-k3-aZq" firstAttribute="leading" secondItem="Xkj-91-X4A" secondAttribute="trailing" constant="14" id="snK-1o-IY6"/>
+                                        <constraint firstAttribute="trailing" secondItem="JEn-k3-aZq" secondAttribute="trailing" constant="10" id="u1I-Vh-Zqj"/>
+                                        <constraint firstItem="JEn-k3-aZq" firstAttribute="top" secondItem="QP9-07-cgO" secondAttribute="top" constant="6" id="vNY-Lc-Y5f"/>
+                                        <constraint firstAttribute="trailing" secondItem="Eiy-uu-QE9" secondAttribute="trailing" constant="10" id="ymZ-0q-LFb"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="ivProduto" destination="Xkj-91-X4A" id="MzM-7O-O1W"/>
+                                    <outlet property="lbPreco" destination="Eiy-uu-QE9" id="JTx-lu-as3"/>
+                                    <outlet property="lbTitle" destination="JEn-k3-aZq" id="Nqm-n7-rdR"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -33,7 +70,9 @@
                             <outlet property="delegate" destination="WIP-bT-IkJ" id="a7m-sL-VPe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Lista de compras" id="dVG-C7-5EI"/>
+                    <navigationItem key="navigationItem" title="Lista de compras" id="dVG-C7-5EI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wM6-bd-jHN"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6l6-va-pM6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -77,6 +116,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="fYA-s7-AWY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ltj-v8-vn6">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
