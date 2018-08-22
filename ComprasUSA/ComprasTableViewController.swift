@@ -66,16 +66,17 @@ class ComprasTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        tableView.backgroundView = fetchedResultController.fetchedObjects?.count == 0 ? label : nil
+
+            
         
+        
+        tableView.backgroundView = fetchedResultController.fetchedObjects?.count == 0 ? label : nil
+//
         return fetchedResultController.fetchedObjects?.count ?? 0
         
         
     }
-    
-    //    if let vc = segue.destination as? URLViewController {
-    //        vc.url = sender as! String
-    //    }
+  
     
     
     
