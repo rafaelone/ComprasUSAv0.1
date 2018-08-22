@@ -87,7 +87,7 @@ class ComprasTableViewController: UITableViewController {
         let compra = fetchedResultController.object(at: indexPath)
         cell.lbTitle.text = compra.title
         cell.ivProduto.image = compra.image as? UIImage
-        cell.lbPreco.text = "R$ \(compra.money)"
+        cell.lbPreco.text = "U$ \(compra.money)"
         
         return cell
         
