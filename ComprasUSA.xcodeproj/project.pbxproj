@@ -17,6 +17,7 @@
 		D91BE38D212CB0A3000CDE68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D91BE38C212CB0A3000CDE68 /* Assets.xcassets */; };
 		D91BE390212CB0A3000CDE68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D91BE38E212CB0A3000CDE68 /* LaunchScreen.storyboard */; };
 		D91BE398212CB1D2000CDE68 /* ComprasTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91BE397212CB1D2000CDE68 /* ComprasTableViewController.swift */; };
+		D92EC16A212EE7A700086628 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EC169212EE7A700086628 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		D91BE38F212CB0A3000CDE68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D91BE391212CB0A3000CDE68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D91BE397212CB1D2000CDE68 /* ComprasTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComprasTableViewController.swift; sourceTree = "<group>"; };
+		D92EC169212EE7A700086628 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				D91BE382212CB094000CDE68 /* AppDelegate.swift */,
 				D91BE384212CB094000CDE68 /* ViewController.swift */,
 				D91BE386212CB094000CDE68 /* Main.storyboard */,
+				D92EC169212EE7A700086628 /* SettingsViewController.swift */,
 				ACDFF04A212CE8D500D7B7EC /* RegistraAtualizaCompraViewController.swift */,
 				D91BE397212CB1D2000CDE68 /* ComprasTableViewController.swift */,
 				ACDFF048212CDBF800D7B7EC /* UIViewController+CoreData.swift */,
@@ -157,6 +160,7 @@
 				ACDFF049212CDBF800D7B7EC /* UIViewController+CoreData.swift in Sources */,
 				D91BE383212CB094000CDE68 /* AppDelegate.swift in Sources */,
 				ACDFF047212CD46400D7B7EC /* CompraTableViewCell.swift in Sources */,
+				D92EC16A212EE7A700086628 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
