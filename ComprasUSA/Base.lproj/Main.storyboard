@@ -164,15 +164,15 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2NW-sS-11c">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2NW-sS-11c">
                                                 <rect key="frame" x="24" y="325" width="327" height="30"/>
-                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="zwR-Af-Roa"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
+                                                <color key="textColor" red="0.0" green="0.1261432005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EcP-kl-0sM">
                                                 <rect key="frame" x="24" y="379" width="327" height="30"/>
@@ -251,6 +251,7 @@
                     <connections>
                         <outlet property="btAddEdit" destination="EcP-kl-0sM" id="a2t-S5-ldL"/>
                         <outlet property="ivFoto" destination="cEj-7z-i44" id="pNh-vR-Weg"/>
+                        <outlet property="lbError" destination="2NW-sS-11c" id="Gay-KG-4Mc"/>
                         <outlet property="slCartao" destination="4Aj-Z4-M7c" id="hz7-jf-ZJP"/>
                         <outlet property="txEstado" destination="fug-bp-vCI" id="KDM-DC-LLO"/>
                         <outlet property="txNome" destination="ZJV-KG-Pf8" id="Fdb-Zg-8mq"/>

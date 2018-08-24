@@ -46,12 +46,7 @@ class SettingsViewController: UIViewController {
         
         ud.set(dolar, forKey: "dolar")
         ud.set(iof, forKey: "iof")
-//        if dolar != nil {
-//            txDolar.keyboardType = UIKeyboardType.numberPad
-//            ud.set(dolar, forKey: "dolar")
-//        } else{
-//            return
-//        }
+
     }
     
 

@@ -17,12 +17,13 @@ class RegistraAtualizaCompraViewController: UIViewController {
     @IBOutlet weak var slCartao: UISwitch!
     @IBOutlet weak var btAddEdit: UIButton!
     
+    @IBOutlet weak var lbError: UILabel!
     var produto: Produto!
     var estado: Estado!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        txValor.keyboardType = UIKeyboardType.numberPad
+        txValor.keyboardType = UIKeyboardType.numberPad
         if produto != nil {
             txNome.text = produto.title
             ivFoto.image = produto.image as? UIImage
@@ -42,17 +43,36 @@ class RegistraAtualizaCompraViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        txValor.keyboardType = UIKeyboardType.numberPad
 //        txEstado.text = produto.estadosString
     }
     
     
     @IBAction func addEditProduto(_ sender: UIButton) {
-        produto.title = txNome.text!
-//        produto.estados = txEstado.text
-//        produto.image = ivFoto.image
-//        produto.money =  Double(txValor.text!)!
+        guard let txtNome = txNome.text else {return}
+        guard let txDinheiro = txValor.text else {return}
+       // guard let txtEstado = txEstado.text else {return}
+    //    produto.estados = txtEstado
+       //// produto.image = ivFoto.image
+        //produto.money =  Double(txValor.text!)!
         
-    
+        if txtNome != "" && txDinheiro != ""{
+            produto.title = txtNome
+            produto.image = ivFoto.image
+            produto.money = Double(txDinheiro)!
+            lbError.text = "Produto cadastrado com sucesso"
+            do{
+                try context.save()
+                navigationController?.popViewController(animated: true)
+            }catch{
+                print(error.localizedDescription)
+            }
+            
+        }else{
+            lbError.text = "Todos os campos são obrigatórios"
+        
+        }
+        
     }
     
     
