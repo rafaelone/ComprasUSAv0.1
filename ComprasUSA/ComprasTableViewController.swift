@@ -15,7 +15,7 @@ class ComprasTableViewController: UITableViewController {
     
     let label: UILabel = {
         let label = UILabel()
-        label.text = "Sem carros cadastrados"
+        label.text = "Sem produtos cadastrados"
         label.textAlignment = .center
         label.textColor = UIColor.gray
         return label
