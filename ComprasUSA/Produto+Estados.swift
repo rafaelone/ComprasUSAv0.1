@@ -8,12 +8,12 @@
 
 import Foundation
 
-extension Produto {
+extension Product {
     var estadosString: String {
         //return categories?.reduce("", {$0 + ($1 as Category).name + "|"})
         if let estados  = estados {
             //pegando cada elemento por nome e tratando
-           return Array(estados).map({($0 as! Estado).nome ?? ""}).joined(separator: " | ")
+           return Array(estados).map({($0 as! State).nome ?? ""}).joined(separator: " | ")
         }else {
             return ""
         }

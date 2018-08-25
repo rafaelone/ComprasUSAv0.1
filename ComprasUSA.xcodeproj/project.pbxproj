@@ -18,6 +18,7 @@
 		D91BE390212CB0A3000CDE68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D91BE38E212CB0A3000CDE68 /* LaunchScreen.storyboard */; };
 		D91BE398212CB1D2000CDE68 /* ComprasTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91BE397212CB1D2000CDE68 /* ComprasTableViewController.swift */; };
 		D92EC16A212EE7A700086628 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EC169212EE7A700086628 /* SettingsViewController.swift */; };
+		D9804B992130D61600D96B7F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D9804B982130D61600D96B7F /* Settings.bundle */; };
 		D990B576213046500079A299 /* Produto+Estados.swift in Sources */ = {isa = PBXBuildFile; fileRef = D990B575213046500079A299 /* Produto+Estados.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		D91BE391212CB0A3000CDE68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D91BE397212CB1D2000CDE68 /* ComprasTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComprasTableViewController.swift; sourceTree = "<group>"; };
 		D92EC169212EE7A700086628 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D9804B982130D61600D96B7F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D990B575213046500079A299 /* Produto+Estados.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Produto+Estados.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +83,7 @@
 				D91BE391212CB0A3000CDE68 /* Info.plist */,
 				D91BE389212CB095000CDE68 /* ComprasUSA.xcdatamodeld */,
 				D990B575213046500079A299 /* Produto+Estados.swift */,
+				D9804B982130D61600D96B7F /* Settings.bundle */,
 			);
 			path = ComprasUSA;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9804B992130D61600D96B7F /* Settings.bundle in Resources */,
 				D91BE390212CB0A3000CDE68 /* LaunchScreen.storyboard in Resources */,
 				D91BE38D212CB0A3000CDE68 /* Assets.xcassets in Resources */,
 				D91BE388212CB094000CDE68 /* Main.storyboard in Resources */,

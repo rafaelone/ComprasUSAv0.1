@@ -18,8 +18,8 @@ class RegistraAtualizaCompraViewController: UIViewController {
     @IBOutlet weak var btAddEdit: UIButton!
     
     @IBOutlet weak var lbError: UILabel!
-    var produto: Produto!
-    var estado: Estado!
+    var produto: Product!
+    var estado: State!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class RegistraAtualizaCompraViewController: UIViewController {
             btAddEdit.setTitle("Atualizar", for: .normal)
             
         }else{
-            produto = Produto(context: context)
+            produto = Product(context: context)
         }
     }
 

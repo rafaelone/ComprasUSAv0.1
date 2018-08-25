@@ -43,9 +43,10 @@ class SettingsViewController: UIViewController {
          view.endEditing(true)
         guard let dolar = txDolar.text else {return}
         guard let iof = txIof.text else {return}
-        
         ud.set(dolar, forKey: "dolar")
         ud.set(iof, forKey: "iof")
+       // ud.set(txIof.text!, forKey: "iof")
+        //ud.set(txDolar.text!, forKey: "dolar")
 
     }
     

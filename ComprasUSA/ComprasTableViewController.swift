@@ -11,7 +11,7 @@ import CoreData
 
 class ComprasTableViewController: UITableViewController {
     
-    var fetchedResultController: NSFetchedResultsController<Produto>!
+    var fetchedResultController: NSFetchedResultsController<Product>!
     
     let label: UILabel = {
         let label = UILabel()
@@ -37,7 +37,7 @@ class ComprasTableViewController: UITableViewController {
     
     private func carregaCompra() {
         //Agora carrega do sqlite
-        let fetchRequest: NSFetchRequest<Produto> = Produto.fetchRequest()
+        let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
         //ordenando pelo titulo
         let ordenaCompra = NSSortDescriptor(key: "title", ascending: true)
         fetchRequest.sortDescriptors = [ordenaCompra]
@@ -67,8 +67,6 @@ class ComprasTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         
 
-            
-        
         
         tableView.backgroundView = fetchedResultController.fetchedObjects?.count == 0 ? label : nil
 //
@@ -77,8 +75,6 @@ class ComprasTableViewController: UITableViewController {
         
     }
   
-    
-    
     
     //
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
