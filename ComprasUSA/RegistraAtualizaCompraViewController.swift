@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreData
 class RegistraAtualizaCompraViewController: UIViewController {
 
     @IBOutlet weak var txNome: UITextField!
@@ -18,11 +18,22 @@ class RegistraAtualizaCompraViewController: UIViewController {
     @IBOutlet weak var btAddEdit: UIButton!
     
     @IBOutlet weak var lbError: UILabel!
+    
+    let pickerView = UIPickerView(frame: .zero)
+    let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 44))
     var produto: Product!
     var estado: State!
+    var listaEstados:[State] = []
+    var fetchedResultController: NSFetchedResultsController<State>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("PRINTANDO")
+        print(listaEstados)
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        toolBarConfiguracao()
+        carregaEstados()
         txValor.keyboardType = UIKeyboardType.numberPad
         if produto != nil {
             txNome.text = produto.title
@@ -49,13 +60,10 @@ class RegistraAtualizaCompraViewController: UIViewController {
     
     
     @IBAction func addEditProduto(_ sender: UIButton) {
-        //guard let txtNome = txNome.text else {return lbError.text = "Todos os campos sâo obrigatórios"}
         guard let txtNome = txNome.text else {return}
         guard let txDinheiro = txValor.text else {return}
-       // guard let txtEstado = txEstado.text else {return}
-    //    produto.estados = txtEstado
         produto.image = ivFoto.image
-        //produto.money =  Double(txValor.text!)!
+        
         
        if txtNome != "" && txDinheiro != ""{
             produto.title = txtNome
@@ -76,9 +84,7 @@ class RegistraAtualizaCompraViewController: UIViewController {
         
     }
     
-    
-    
-
+    // funcao para pegar foto da camera ou biblioteca
     @IBAction func addFoto(_ sender: UIButton) {
         let alert = UIAlertController(title: "Selecionar foto", message: "De onde você gostaria de selecionar a foto ?", preferredStyle: .actionSheet)
         
@@ -102,12 +108,52 @@ class RegistraAtualizaCompraViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 
+    // funcao para selecionar foto
     func selecionaFoto(sourceType: UIImagePickerControllerSourceType){
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = sourceType
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    
+    func toolBarConfiguracao(){
+        let btOk = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(done))
+        
+        let btSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        
+        let btCancel = UIBarButtonItem(title: "Cancelar", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancel))
+        
+        toolbar.backgroundColor = .white
+        toolbar.setItems([btCancel, btSpace, btOk], animated: false)
+        
+        txEstado.inputView = pickerView
+        txEstado.inputAccessoryView = toolbar
+    }
+    @objc func done() {
+        let produto = listaEstados[pickerView.selectedRow(inComponent: 0)]
+        txEstado.text = produto.nome
+        cancel()
+     
+    }
+    
+    @objc func cancel() {
+        view.endEditing(true)
+    }
+    
+    func carregaEstados(){
+        let fetchRequest: NSFetchRequest<State> = State.fetchRequest()
+        let ordenaNome = NSSortDescriptor(key: "nome", ascending: true)
+        fetchRequest.sortDescriptors = [ordenaNome]
+        do{
+             listaEstados = try context.fetch(fetchRequest)
+        }catch{
+            print(error.localizedDescription)
+        }
+        pickerView.reloadAllComponents()
+    }
+    
+   
 }
 
 extension RegistraAtualizaCompraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -129,7 +175,30 @@ extension RegistraAtualizaCompraViewController: UIImagePickerControllerDelegate,
         }
         dismiss(animated: true, completion: nil)
     }
-    
-    
-    
 }
+
+extension RegistraAtualizaCompraViewController: NSFetchedResultsControllerDelegate {
+    //metodo disparado toda vez que ha uma mudanca de conteudo
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+       pickerView.reloadAllComponents()
+    }
+}
+
+extension RegistraAtualizaCompraViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return listaEstados.count
+    }
+}
+
+extension RegistraAtualizaCompraViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return listaEstados[row].nome
+    }
+}
+
+
