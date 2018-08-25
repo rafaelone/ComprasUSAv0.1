@@ -49,14 +49,15 @@ class RegistraAtualizaCompraViewController: UIViewController {
     
     
     @IBAction func addEditProduto(_ sender: UIButton) {
+        //guard let txtNome = txNome.text else {return lbError.text = "Todos os campos sâo obrigatórios"}
         guard let txtNome = txNome.text else {return}
         guard let txDinheiro = txValor.text else {return}
        // guard let txtEstado = txEstado.text else {return}
     //    produto.estados = txtEstado
-       //// produto.image = ivFoto.image
+        produto.image = ivFoto.image
         //produto.money =  Double(txValor.text!)!
         
-        if txtNome != "" && txDinheiro != ""{
+       if txtNome != "" && txDinheiro != ""{
             produto.title = txtNome
             produto.image = ivFoto.image
             produto.money = Double(txDinheiro)!
@@ -93,10 +94,7 @@ class RegistraAtualizaCompraViewController: UIViewController {
         }
         alert.addAction(biblioteca)
         
-        let album = UIAlertAction(title: "Album de fotos", style: .default) { (action) in
-            self.selecionaFoto(sourceType: .savedPhotosAlbum)
-        }
-        alert.addAction(album)
+
         
         let cancelar = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         alert.addAction(cancelar)
