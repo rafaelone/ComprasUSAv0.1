@@ -8,11 +8,13 @@
 
 import UIKit
 import CoreData
-class SettingsViewController: UIViewController  {
+class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
-//    , UITableViewDataSource, UITableViewDelegate
+    
     var fetchedResultController: NSFetchedResultsController<State>!
-    var estados: [State] = []
+    var listaEstados:[State] = []
+    var produto: Product!
+    let numberFormatter = NumberFormatter()
     
     @IBOutlet weak var txDolar: UITextField!
     @IBOutlet weak var txIof: UITextField!
@@ -32,9 +34,12 @@ class SettingsViewController: UIViewController  {
         super.viewDidLoad()
         txDolar.keyboardType = UIKeyboardType.numberPad
         txIof.keyboardType = UIKeyboardType.numberPad
-                carregaEstados()
+        carregaEstados()
+//        print(listaEstados)
         // Do any additional setup after loading the view.
     }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -60,15 +65,18 @@ class SettingsViewController: UIViewController  {
         let title = estado == nil ? "Adicionar Estado" : "Atualizar Estado"
         let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
         
+        
         let confirmar = UIAlertAction(title: "Adicionar", style: .default) { (action) in
             let nomeEstado = alert.textFields![0].text
 //            let impostoEstado = alert.textFields![1].text
             let estado = estado ?? State(context: self.context)
+            
             estado.nome = nomeEstado
-//            estado.imposto = Double(impostoEstado)!
+            estado.imposto = 0
             do{
                 try self.context.save()
-//                self.loadEstados()
+//                self.tbEstado.reloadData()
+                
             }catch{print(error.localizedDescription)}
         }
         
@@ -76,10 +84,11 @@ class SettingsViewController: UIViewController  {
             textField.placeholder = "Nome do estado"
             textField.text = estado?.nome
         }
-//        alert.addTextField { (textField) in
-//            textField.placeholder = "Imposto"
-//            textField.text = estado?.imposto ?? 0
-//        }
+        alert.addTextField { (textField) in
+            textField.placeholder = "Imposto"
+            estado?.imposto  = self.numberFormatter.number(from: textField.text!)?.doubleValue ?? 0
+//            textField.text = Double(estado?.imposto) ?? 0
+        }
         let cancelar = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         alert.addAction(confirmar)
         alert.addAction(cancelar)
@@ -89,18 +98,14 @@ class SettingsViewController: UIViewController  {
     
     func carregaEstados(){
         let fetchRequest: NSFetchRequest<State> = State.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "nome", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
+        let ordenaNome = NSSortDescriptor(key: "nome", ascending: true)
+        fetchRequest.sortDescriptors = [ordenaNome]
         do{
-            estados = try context.fetch(fetchRequest)
-//            tableView.reloadData()
-        }catch{print(error.localizedDescription)}
+            listaEstados = try context.fetch(fetchRequest)
+        }catch{
+            print(error.localizedDescription)
+        }
     }
-    
-    
-    
-    
-    
     
     func saveDolarIof(){
         view.endEditing(true)
@@ -111,7 +116,43 @@ class SettingsViewController: UIViewController  {
         
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listaEstados.count
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      let cell = tbEstado.dequeueReusableCell(withIdentifier: "celula", for: indexPath) as! EstadoTableViewCell
+        cell.txEstado.text = listaEstados[indexPath.row].nome
+        cell.txValor.text = "\(listaEstados[indexPath.row].imposto)"
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleta = UITableViewRowAction(style: .destructive, title: "Excluir") { (action, indexPath) in
+            let estado = self.listaEstados[indexPath.row]
+//            self.produto.removeFromEstados(estado)
+            self.context.delete(estado)
+            do{
+                try self.context.save()
+                self.listaEstados.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            }catch{
+                print(error.localizedDescription)
+                
+            }
+            
+        }
+        
+        let edita = UITableViewRowAction(style: .default, title: "Editar") { (action, indexPath) in
+            let estado = self.listaEstados[indexPath.row]
+            self.showAlert(estado: estado)
+            tableView.setEditing(false, animated: true)
+        }
+        edita.backgroundColor = .blue
+        return [deleta, edita]
+    }
     
     
 }
@@ -127,11 +168,11 @@ extension SettingsViewController: UITextFieldDelegate{
     }
 }
 
-//extension SettingsViewController: NSFetchedResultsControllerDelegate {
-//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        tableView.reloadData()
-//    }
-//}
+extension SettingsViewController: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tbEstado.reloadData()
+    }
+}
 
 
 

@@ -131,8 +131,9 @@ class RegistraAtualizaCompraViewController: UIViewController {
         txEstado.inputAccessoryView = toolbar
     }
     @objc func done() {
-        let produto = listaEstados[pickerView.selectedRow(inComponent: 0)]
-        txEstado.text = produto.nome
+        let estado = listaEstados[pickerView.selectedRow(inComponent: 0)]
+        txEstado.text = estado.nome
+        produto.addToEstados(estado)
         cancel()
      
     }
