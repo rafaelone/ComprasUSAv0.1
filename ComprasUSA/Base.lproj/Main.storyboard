@@ -77,6 +77,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Lista de compras" id="dVG-C7-5EI">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="5Sg-lK-aXd"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wM6-bd-jHN">
                             <connections>
                                 <segue destination="CvD-sn-24p" kind="show" id="nh9-1b-LJo"/>
@@ -151,7 +152,7 @@
             </objects>
             <point key="canvasLocation" x="738" y="922"/>
         </scene>
-        <!--Registra Atualiza Compra View Controller-->
+        <!--Cadastrar produto-->
         <scene sceneID="bfg-YY-wIP">
             <objects>
                 <viewController id="CvD-sn-24p" customClass="RegistraAtualizaCompraViewController" customModule="ComprasUSA" customModuleProvider="target" sceneMemberID="viewController">
@@ -174,7 +175,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cEj-7z-i44">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cEj-7z-i44">
                                                 <rect key="frame" x="24" y="64" width="327" height="120"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="L47-eD-4hL"/>
@@ -315,6 +316,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ay0-Nn-wyF"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Cadastrar produto" id="VtW-rZ-fgX"/>
                     <connections>
                         <outlet property="btAddEdit" destination="EcP-kl-0sM" id="a2t-S5-ldL"/>
                         <outlet property="ivFoto" destination="cEj-7z-i44" id="pNh-vR-Weg"/>
@@ -478,6 +480,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="cvF-2y-Uaq"/>
-        <segue reference="nh9-1b-LJo"/>
+        <segue reference="VZX-gj-Q1P"/>
     </inferredMetricsTieBreakers>
 </document>

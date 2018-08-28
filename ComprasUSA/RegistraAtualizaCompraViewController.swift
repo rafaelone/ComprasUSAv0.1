@@ -16,7 +16,6 @@ class RegistraAtualizaCompraViewController: UIViewController {
     @IBOutlet weak var txValor: UITextField!
     @IBOutlet weak var slCartao: UISwitch!
     @IBOutlet weak var btAddEdit: UIButton!
-    
     @IBOutlet weak var lbError: UILabel!
     
     let pickerView = UIPickerView(frame: .zero)
@@ -25,6 +24,7 @@ class RegistraAtualizaCompraViewController: UIViewController {
     var estado: State!
     var listaEstados:[State] = []
     var fetchedResultController: NSFetchedResultsController<State>!
+      let ud = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,16 +61,25 @@ class RegistraAtualizaCompraViewController: UIViewController {
     @IBAction func addEditProduto(_ sender: UIButton) {
         guard let txtNome = txNome.text else {return}
         guard let txDinheiro = txValor.text else {return}
-        produto.image = ivFoto.image
-      
+        guard let txEstado = txEstado.text else {return}
+        let imagem = ivFoto.image
+//        guard let imposto = Double(estado.imposto.description) else {return}
+//      Double(ud.string(forKey: "dolar"))!
         
         
-       if txtNome != "" && txDinheiro != ""{
+       if txtNome != "" && txDinheiro != "" && txEstado != ""{
             produto.title = txtNome
-            produto.image = ivFoto.image
-            produto.money = Double(txDinheiro)!
+            produto.image = imagem
+//            produto.money = Double(txDinheiro)!
             produto.cartao = slCartao.isOn
-            lbError.text = "Produto cadastrado com sucesso"
+        
+        if slCartao.isOn {
+       
+            produto.money = Double(txDinheiro)! * ud.double(forKey: "iof")
+        }else{
+            produto.money = Double(txDinheiro)!
+    }
+        
             do{
                 try context.save()
                 navigationController?.popViewController(animated: true)
