@@ -35,7 +35,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         txDolar.keyboardType = UIKeyboardType.numberPad
         txIof.keyboardType = UIKeyboardType.numberPad
         carregaEstados()
-//        print(listaEstados)
         // Do any additional setup after loading the view.
     }
     
@@ -56,6 +55,10 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         txDolar.text = ud.string(forKey: "dolar")
         txIof.text = ud.string(forKey: "iof")
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        carregaEstados()
+    }
     
     @IBAction func addEstado(_ sender: UIButton) {
         showAlert(estado: nil)
@@ -67,15 +70,17 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         
         let confirmar = UIAlertAction(title: "Adicionar", style: .default) { (action) in
-            let nomeEstado = alert.textFields![0].text
-//            let impostoEstado = alert.textFields![1].text
+            guard let nome = alert.textFields![0].text else {return}
+            guard let taxa = alert.textFields![1].text else {return}
+            let nomeEstado = nome
+            let impostoEstado = Double(taxa)
             let estado = estado ?? State(context: self.context)
-            
             estado.nome = nomeEstado
-            estado.imposto = 0
+            estado.imposto = impostoEstado ?? 0
+       
             do{
                 try self.context.save()
-//                self.tbEstado.reloadData()
+                self.carregaEstados()
                 
             }catch{print(error.localizedDescription)}
         }
@@ -86,8 +91,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         alert.addTextField { (textField) in
             textField.placeholder = "Imposto"
-            estado?.imposto  = self.numberFormatter.number(from: textField.text!)?.doubleValue ?? 0
-//            textField.text = Double(estado?.imposto) ?? 0
+            textField.text = estado?.imposto.description
+            
         }
         let cancelar = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         alert.addAction(confirmar)
@@ -102,6 +107,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         fetchRequest.sortDescriptors = [ordenaNome]
         do{
             listaEstados = try context.fetch(fetchRequest)
+            tbEstado.reloadData()
         }catch{
             print(error.localizedDescription)
         }
@@ -117,6 +123,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tbEstado.backgroundView = listaEstados.count == 0 ? label : nil
         return listaEstados.count
     }
     
@@ -131,7 +138,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let deleta = UITableViewRowAction(style: .destructive, title: "Excluir") { (action, indexPath) in
             let estado = self.listaEstados[indexPath.row]
-//            self.produto.removeFromEstados(estado)
+
             self.context.delete(estado)
             do{
                 try self.context.save()
@@ -140,11 +147,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             
             }catch{
                 print(error.localizedDescription)
-                
             }
-            
         }
-        
         let edita = UITableViewRowAction(style: .default, title: "Editar") { (action, indexPath) in
             let estado = self.listaEstados[indexPath.row]
             self.showAlert(estado: estado)
@@ -153,13 +157,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         edita.backgroundColor = .blue
         return [deleta, edita]
     }
-    
-    
 }
-
-
-
-
 
 extension SettingsViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

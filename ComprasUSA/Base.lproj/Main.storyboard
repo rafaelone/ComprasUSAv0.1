@@ -129,6 +129,9 @@
                                                     <constraint firstAttribute="width" constant="22" id="Ovw-Vh-r37"/>
                                                     <constraint firstAttribute="height" constant="30" id="hkw-60-s3v"/>
                                                 </constraints>
+                                                <connections>
+                                                    <segue destination="I7A-SM-RSA" kind="show" id="cvF-2y-Uaq"/>
+                                                </connections>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Valor (U$)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DeI-Jj-7lK">
                                                 <rect key="frame" x="24" y="262" width="183" height="30"/>
@@ -409,4 +412,7 @@
             <point key="canvasLocation" x="-1607.2" y="883.80809595202402"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="cvF-2y-Uaq"/>
+    </inferredMetricsTieBreakers>
 </document>
