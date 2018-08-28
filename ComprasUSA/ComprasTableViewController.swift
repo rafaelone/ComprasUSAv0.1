@@ -53,6 +53,12 @@ class ComprasTableViewController: UITableViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? ViewController {
+           vc.produto = fetchedResultController.object(at: tableView.indexPathForSelectedRow!)
+        }
+    }
+    
     
     
     

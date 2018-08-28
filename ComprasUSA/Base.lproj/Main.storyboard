@@ -31,7 +31,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="103.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xkj-91-X4A">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xkj-91-X4A">
                                             <rect key="frame" x="12" y="6" width="63" height="80"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="80" id="6oM-0A-y4J"/>
@@ -67,6 +67,7 @@
                                     <outlet property="ivProduto" destination="Xkj-91-X4A" id="MzM-7O-O1W"/>
                                     <outlet property="lbPreco" destination="Eiy-uu-QE9" id="JTx-lu-as3"/>
                                     <outlet property="lbTitle" destination="JEn-k3-aZq" id="Nqm-n7-rdR"/>
+                                    <segue destination="Pb7-aL-Fe1" kind="show" id="scg-Q1-yKm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -86,6 +87,69 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6l6-va-pM6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="284" y="109.29535232383809"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Q53-Kq-BEx">
+            <objects>
+                <viewController id="Pb7-aL-Fe1" customClass="ViewController" customModule="ComprasUSA" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r4a-ML-Yhw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dnx-9T-Jea">
+                                <rect key="frame" x="0.0" y="64" width="375" height="230"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nome do produto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32e-Xr-X14">
+                                <rect key="frame" x="24" y="323" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Valor do produto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4PS-k2-UTA">
+                                <rect key="frame" x="24" y="366" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Estado" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWS-Q5-agk">
+                                <rect key="frame" x="24" y="414" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cartão" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAI-wx-9ho">
+                                <rect key="frame" x="24" y="465" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="jyd-lR-kHE"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VKg-sv-3gg">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="zbp-Ko-cZH">
+                            <connections>
+                                <segue destination="CvD-sn-24p" kind="show" id="VZX-gj-Q1P"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="ivProduto" destination="Dnx-9T-Jea" id="5nF-i5-U4u"/>
+                        <outlet property="lbCartao" destination="QAI-wx-9ho" id="51U-Ng-wUT"/>
+                        <outlet property="lbEstadoProduto" destination="pWS-Q5-agk" id="d4G-Yh-9sU"/>
+                        <outlet property="lbNomeProduto" destination="32e-Xr-X14" id="Znl-XV-bkG"/>
+                        <outlet property="lbValorProduto" destination="4PS-k2-UTA" id="23J-fB-3V0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J2r-tw-fd0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="738" y="922"/>
         </scene>
         <!--Registra Atualiza Compra View Controller-->
         <scene sceneID="bfg-YY-wIP">
@@ -110,7 +174,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cEj-7z-i44">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cEj-7z-i44">
                                                 <rect key="frame" x="24" y="64" width="327" height="120"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="L47-eD-4hL"/>
@@ -414,5 +478,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="cvF-2y-Uaq"/>
+        <segue reference="VZX-gj-Q1P"/>
     </inferredMetricsTieBreakers>
 </document>

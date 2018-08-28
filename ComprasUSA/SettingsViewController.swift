@@ -38,8 +38,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         // Do any additional setup after loading the view.
     }
     
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -67,8 +65,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     func showAlert(estado: State?){
         let title = estado == nil ? "Adicionar Estado" : "Atualizar Estado"
         let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
-        
-        
         let confirmar = UIAlertAction(title: "Adicionar", style: .default) { (action) in
             guard let nome = alert.textFields![0].text else {return}
             guard let taxa = alert.textFields![1].text else {return}
@@ -77,14 +73,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             let estado = estado ?? State(context: self.context)
             estado.nome = nomeEstado
             estado.imposto = impostoEstado ?? 0
-       
             do{
                 try self.context.save()
                 self.carregaEstados()
-                
             }catch{print(error.localizedDescription)}
         }
-        
         alert.addTextField { (textField) in
             textField.placeholder = "Nome do estado"
             textField.text = estado?.nome
@@ -92,15 +85,13 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         alert.addTextField { (textField) in
             textField.placeholder = "Imposto"
             textField.text = estado?.imposto.description
-            
         }
         let cancelar = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         alert.addAction(confirmar)
         alert.addAction(cancelar)
-        
         present(alert, animated: true, completion: nil)
     }
-    
+
     func carregaEstados(){
         let fetchRequest: NSFetchRequest<State> = State.fetchRequest()
         let ordenaNome = NSSortDescriptor(key: "nome", ascending: true)
@@ -119,7 +110,6 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         guard let iof = txIof.text else {return}
         ud.set(dolar, forKey: "dolar")
         ud.set(iof, forKey: "iof")
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -135,10 +125,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
         let deleta = UITableViewRowAction(style: .destructive, title: "Excluir") { (action, indexPath) in
             let estado = self.listaEstados[indexPath.row]
-
             self.context.delete(estado)
             do{
                 try self.context.save()

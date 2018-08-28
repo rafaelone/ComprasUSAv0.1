@@ -39,7 +39,7 @@ class RegistraAtualizaCompraViewController: UIViewController {
             txNome.text = produto.title
             ivFoto.image = produto.image as? UIImage
             txValor.text = "\(produto.money)"
-            slCartao.isOn = produto.cartao
+            slCartao.setOn(produto.cartao, animated: true)
             btAddEdit.setTitle("Atualizar", for: .normal)
             
         }else{
@@ -55,7 +55,7 @@ class RegistraAtualizaCompraViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         txValor.keyboardType = UIKeyboardType.numberPad
-//        txEstado.text = produto.estadosString
+        txEstado.text = produto.estadosString
     }
     
     
@@ -63,12 +63,14 @@ class RegistraAtualizaCompraViewController: UIViewController {
         guard let txtNome = txNome.text else {return}
         guard let txDinheiro = txValor.text else {return}
         produto.image = ivFoto.image
+      
         
         
        if txtNome != "" && txDinheiro != ""{
             produto.title = txtNome
             produto.image = ivFoto.image
             produto.money = Double(txDinheiro)!
+            produto.cartao = slCartao.isOn
             lbError.text = "Produto cadastrado com sucesso"
             do{
                 try context.save()
