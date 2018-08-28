@@ -28,8 +28,6 @@ class RegistraAtualizaCompraViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("PRINTANDO")
-        print(listaEstados)
         pickerView.dataSource = self
         pickerView.delegate = self
         toolBarConfiguracao()
@@ -54,6 +52,7 @@ class RegistraAtualizaCompraViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+           carregaEstados()
         txValor.keyboardType = UIKeyboardType.numberPad
         txEstado.text = produto.estadosString
     }

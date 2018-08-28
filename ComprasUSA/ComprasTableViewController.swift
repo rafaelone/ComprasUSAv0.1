@@ -25,8 +25,6 @@ class ComprasTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         carregaCompra()
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -36,15 +34,11 @@ class ComprasTableViewController: UITableViewController {
     
     
     private func carregaCompra() {
-      
-        //Agora carrega do sqlite
         let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
-        //ordenando pelo titulo
         let ordenaCompra = NSSortDescriptor(key: "title", ascending: true)
         fetchRequest.sortDescriptors = [ordenaCompra]
         fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultController.delegate = self
-        
         do {
             try fetchedResultController.performFetch()
         } catch {
@@ -71,18 +65,13 @@ class ComprasTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        
-
-        
         tableView.backgroundView = fetchedResultController.fetchedObjects?.count == 0 ? label : nil
-//
         return fetchedResultController.fetchedObjects?.count ?? 0
         
         
     }
   
     
-    //
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CompraTableViewCell
         
